@@ -9,9 +9,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\src\SisConTrad.Core\SisConTrad.Core.csproj" />
-    <ProjectReference Include="..\src\SisConTrad.Infrastructure\SisConTrad.Infrastructure.csproj" />
-  </ItemGroup>
-
 </Project>
