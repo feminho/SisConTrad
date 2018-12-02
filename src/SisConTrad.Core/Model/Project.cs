@@ -11,7 +11,6 @@ namespace SisConTrad.Core.Model
     {
         public Project()
         {
-
         }
 
         [Key]
@@ -52,7 +51,7 @@ namespace SisConTrad.Core.Model
         [DisplayName("Cliente")]
         public Client Client { get; set; }
 
-        ICollection<Translation> Translations { get; set; }
+        public ICollection<Translation> Translations { get; set; }
 
 
     }

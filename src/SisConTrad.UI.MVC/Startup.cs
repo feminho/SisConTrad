@@ -11,11 +11,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SisConTrad.Infrastructure.Data;
+using SisConTrad.IOC;
 
 namespace SisConTrad.UI.MVC
 {
     public class Startup
     {
+        public static ServiceProvider Provider { get; private set; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,6 +39,10 @@ namespace SisConTrad.UI.MVC
             services.AddDbContext<SisConTradContex>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            Provider = services.BuildServiceProvider();
+
+            DependencyInjectionResolver.RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

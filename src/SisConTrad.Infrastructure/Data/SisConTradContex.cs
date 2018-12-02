@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SisConTrad.Core.Model;
+using SisConTrad.Infrastructure.Config;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,64 +27,13 @@ namespace SisConTrad.Infrastructure.Data
             modelBuilder.Entity<Translation>().ToTable("Translations");
             modelBuilder.Entity<Message>().ToTable("Messages");
 
-            #region Client Config
-
-            modelBuilder.Entity<Client>().Property(p => p.Id)
-                .UseSqlServerIdentityColumn();
-
-            modelBuilder.Entity<Client>().Property(p => p.Email)
-                .HasColumnType("varchar(50)");
-
-            modelBuilder.Entity<Client>().Property(p => p.WhatsApp)
-                .HasColumnType("varchar(20)");
-
-            modelBuilder.Entity<Client>().Property(p => p.Name)
-                .HasColumnType("varchar(255)")
-                .IsRequired();
-
-            #endregion
-
-            #region Project Config
-
-            modelBuilder.Entity<Project>().Property(p => p.Id)
-                .UseSqlServerIdentityColumn();
-
-            modelBuilder.Entity<Project>().Property(p => p.ProjectName)
-                .HasColumnType("varchar(255)")
-                .IsRequired();
-
-            modelBuilder.Entity<Project>().Property(p => p.ProjectCode)
-                .HasColumnType("varchar(10)");
-
-            modelBuilder.Entity<Project>().Property(p => p.PaymentMode)
-                .HasColumnType("varchar(20)");
-
-            modelBuilder.Entity<Project>()
-                .HasOne(p => p.Client);
-                
-            #endregion
-
-            #region Translation Config
-
-            modelBuilder.Entity<Translation>().Property(p => p.Id)
-                .UseSqlServerIdentityColumn();
-
-            modelBuilder.Entity<Translation>().Property(p => p.FileToBeTranslate)
-                .IsRequired();
-
-            modelBuilder.Entity<Translation>().Property(p => p.ProjectType)
-                .HasColumnType("varchar(20)");
-
-            #endregion
-
-            #region Message Config
-
-            modelBuilder.Entity<Message>().Property(p => p.Id)
-                .UseSqlServerIdentityColumn();
-
-            #endregion
+            modelBuilder.ApplyConfiguration(new ClientMap());
+            modelBuilder.ApplyConfiguration(new ProjectMap());
+            modelBuilder.ApplyConfiguration(new TranslationMap());
+            modelBuilder.ApplyConfiguration(new MessageMap());
 
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

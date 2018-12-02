@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SisConTrad.Infrastructure.Data;
 
 namespace SisConTrad.Infrastructure.Migrations
 {
     [DbContext(typeof(SisConTradContex))]
-    partial class SisConTradContexModelSnapshot : ModelSnapshot
+    [Migration("20181128101325_InicioDB")]
+    partial class InicioDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,10 +29,6 @@ namespace SisConTrad.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("varchar(50)");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(true);
 
                     b.Property<string>("Name")
                         .IsRequired()

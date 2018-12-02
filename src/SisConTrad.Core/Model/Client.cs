@@ -23,9 +23,10 @@ namespace SisConTrad.Core.Model
         public string Name { get; set; }
         public string Email { get; set; }
         public string WhatsApp { get; set; }
+        public bool IsActive { get; set; }
 
-        ICollection<Project> Projects { get; set; }
-        ICollection<Message> Messages { get; set; }
+        public ICollection<Project> Projects { get; set; }
+        public ICollection<Message> Messages { get; set; }
 
     }
 }
